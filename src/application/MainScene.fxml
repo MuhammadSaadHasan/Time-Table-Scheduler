@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainSceneController" style="-fx-background-color: #f0f0f0; -fx-pref-width: 720; -fx-pref-height: 600;">
+    <StackPane fx:id="mainStackPane" alignment="CENTER" prefWidth="700" prefHeight="580" style="-fx-padding: 20;">
+        <!-- Main Menu -->
+        <VBox fx:id="mainMenu" alignment="CENTER" spacing="30" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;">
+            <Label text="WELCOME TO TIME TABLE SCHEDULER" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+            <Button text="Login" onAction="#handleLoginAccount" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+            <Button text="Register" onAction="#handleRegisterAccount" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+        </VBox>
+
+		<!-- Excel Display -->
+		<VBox fx:id="excelDisplay" alignment="CENTER" spacing="20" visible="false" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;">
+		    <Label text="Excel File Data" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+		    <TabPane fx:id="tabPane" prefWidth="680" prefHeight="500" style="-fx-padding: 10;">
+		        <!-- Tabs will be added dynamically -->
+		    </TabPane>
+		   	<Button text="Submit" onAction="#submitSelectedCourses" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+
+		</VBox>
+
+        <!-- Registration Page -->
+       <VBox fx:id="registrationPage" alignment="CENTER" spacing="20" visible="false" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;">
+   			 <Label text="Welcome to Registration" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+   			 <TextField fx:id="regUsername" promptText="Username" style="-fx-padding: 10;"/>
+    		<Label fx:id="usernameErrorLabel" text="Username is invalid" style="-fx-text-fill: red;" visible="false"/>
+    		<PasswordField fx:id="regPassword" promptText="Password" style="-fx-padding: 10;"/>
+   		 	<Button text="Register" onAction="#submitRegistration" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+	</VBox>
+
+
+        <!-- Login Page -->
+        <VBox fx:id="loginPage" alignment="CENTER" spacing="20" visible="false" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;">
+            <Label text="Welcome to Login" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+            <TextField fx:id="loginUsername" promptText="Username" style="-fx-padding: 10;"/>
+            <PasswordField fx:id="loginPassword" promptText="Password" style="-fx-padding: 10;"/>
+            <Button text="Login" onAction="#submitLogin" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+        </VBox>
+        
+       <!-- Student Information Page -->
+	<VBox fx:id="studentInfoPage" alignment="CENTER" spacing="20" visible="false" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;">
+	    <Label text="Student Information" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+	    <TextField fx:id="nameField" promptText="Name" style="-fx-padding: 10;"/>
+	    <TextField fx:id="degreeField" promptText="Degree" style="-fx-padding: 10;"/>
+	    <TextField fx:id="batchField" promptText="Batch" style="-fx-padding: 10;"/>
+	    <TextField fx:id="rollNumberField" promptText="Roll Number" style="-fx-padding: 10;"/>
+	    <Button text="Submit" onAction="#submitStudentInfo" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+	</VBox> 	
+
+     <VBox fx:id="userprofile" alignment="TOP_CENTER" spacing="20" style="-fx-padding: 20; -fx-background-color: white; -fx-border-color: #666; -fx-border-radius: 5; -fx-background-radius: 5;" BorderPane.alignment="CENTER">
+    <Label text="User Profile" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+    <HBox spacing="10">
+        <Label text="Name:" style="-fx-font-weight: bold; -fx-text-fill: black;"/>
+        <Label fx:id="nameLabel" text="-" style="-fx-text-fill: black;"/>
+    </HBox>
+    <HBox spacing="10">
+        <Label text="Roll Number:" style="-fx-font-weight: bold; -fx-text-fill: black;"/>
+        <Label fx:id="rollNumberLabel" text="-" style="-fx-text-fill: black;"/>
+    </HBox>
+    <HBox spacing="10">
+        <Label text="Batch:" style="-fx-font-weight: bold; -fx-text-fill: black;"/>
+        <Label fx:id="batchLabel" text="-" style="-fx-text-fill: black;"/>
+    </HBox>
+    <HBox spacing="10">
+        <Label text="Degree:" style="-fx-font-weight: bold; -fx-text-fill: black;"/>
+        <Label fx:id="degreeLabel" text="-" style="-fx-text-fill: black;"/>
+    </HBox>
+	<Button text="Edit Profile"  onAction="#showeditprofile" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+        <Button text="View TimeTable" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+        <Button text="Generate TimeTable" onAction="#SubmitGenerateTimeTable" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+		<Button text="Generate QRCode" onAction="#displayHtmlContent" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+		<Button text="Turn on DarkMode" onAction="#toggleDarkMode" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+        <Button text="Turn off DarkMode" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+ </VBox>
+      
+    
+    	<!-- edit Student Profile Page -->
+	<VBox fx:id="editstudentprofilePage" alignment="CENTER" spacing="20" visible="false" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;">
+	   <Button text="Edit Student Info" onAction="#showeditinfo" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+        <Button text="Edit Username" 	onAction="#showeditusername"   style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+        <Button text="Edit Password" 	onAction="#showeditpassword" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+       
+	</VBox> 	
+    
+    
+    
+   	<!-- edit Student Information Page -->
+	<VBox fx:id="editstudentInfoPage" alignment="CENTER" spacing="20" visible="false" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;">
+	    <Label text="Edit Student Information" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+	    <TextField fx:id="editnameField" promptText="Edit Name" style="-fx-padding: 10;"/>
+	    <TextField fx:id="editdegreeField" promptText="Edit Degree" style="-fx-padding: 10;"/>
+	    <TextField fx:id="editbatchField" promptText="Edit Batch" style="-fx-padding: 10;"/>
+	    <TextField fx:id="editrollNumberField" promptText="Edit Roll Number" style="-fx-padding: 10;"/>
+	    <Button text="Submit" onAction="#userchangeprofile" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+	</VBox> 	
+	
+	<!-- edit Student user name Page -->
+	<VBox fx:id="editStudentUsernamePage" alignment="CENTER" spacing="20" visible="false" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;">
+	    <Label text="Edit Student username" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+	    <TextField fx:id="editusernameField" promptText="Edit username" style="-fx-padding: 10;"/>
+	    <Button text="Submit" onAction="#userchangeusername" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+	</VBox>
+
+	<!-- edit Student password Page -->
+	<VBox fx:id="editStudentPasswordPage" alignment="CENTER" spacing="20" visible="false" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;">
+	    <Label text="Edit Student username" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+	    <TextField fx:id="editpasswordField" promptText="Edit password" style="-fx-padding: 10;"/>
+	    <Button text="Submit" onAction="#userchangepassword" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+	</VBox> 	
+	
+	
+		<!-- edit Student password Page -->
+	<VBox fx:id="TimeTablePage" alignment="CENTER" spacing="20" visible="false" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;">
+	    <Label text="YOUR TIME TABLE" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+	    <TabPane fx:id="TimetableTabPane" prefWidth="680" prefHeight="500" style="-fx-padding: 10;">
+	        <!-- Tabs will be added dynamically -->
+	    </TabPane>
+	    <Button text="Share" onAction="#handleShareAction" style="-fx-background-color: #5a5a5a; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+	</VBox>
+	
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+    
+    </StackPane>
+</AnchorPane>
